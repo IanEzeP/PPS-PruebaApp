@@ -1,0 +1,36 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>PruebaApp</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true" color="light">
+  <ion-header collapse="condense">
+    <ion-toolbar>
+      <ion-title size="large">PruebaApp</ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
+  <div style="flex-direction: column;">
+    <ion-label style="display: flex; align-items: center; justify-content: center;">
+      <h1>Iniciar Sesion</h1>
+    </ion-label>
+    
+    <ion-list [inset]="true" >
+      <ion-item>
+        <ion-input label="Email" type="email" labelPlacement="floating" [(ngModel)]="this.mail" minlength="6" maxlength="40"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-input label="Password" type="password" labelPlacement="floating" 
+        [(ngModel)]="this.pass" minlength="6" maxlength="18"></ion-input>
+      </ion-item>
+    </ion-list>
+
+    <ion-button color="tertiary" expand="block" (click)="this.iniciarSesion()">Aceptar</ion-button>
+  </div>
+  </div>  
+
+</ion-content>
+
