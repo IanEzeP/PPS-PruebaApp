@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AlertController } from '@ionic/angular';
 import { Router } from '@angular/router';
+import { AngularFirestore } from "@angular/fire/compat/firestore";
+import { User } from '../classes/user';
 
 @Component({
   selector: 'app-login',
@@ -13,8 +15,23 @@ export class LoginPage implements OnInit {
   public pass : string = "";
   
   public arrayUsers : any = null;
+  public arrayFirebase : Array<User> = [];
 
-  constructor(private alertController: AlertController, private router: Router) { }
+  constructor(private alertController: AlertController, private router: Router, private firestore: AngularFirestore) 
+  { 
+    console.log("Inicio extracción de base de datos");
+
+    this.firestore.collection("users").valueChanges().subscribe((next: any) =>
+    {
+      let result: Array<User> = next;
+      console.log(result);
+      this.arrayFirebase = [];
+      result.forEach((obj : any) => {
+        this.arrayFirebase.push(new User(obj.id, obj.email, obj.password, obj.name));
+      });
+      console.log(this.arrayFirebase);
+    })
+  }
 
   ngOnInit() 
   {
@@ -22,13 +39,11 @@ export class LoginPage implements OnInit {
     this.pass = "";
 
     localStorage.setItem("usuariosGuardados", `{"email": "ian.eze21@gmail.com", "password": "zeke0822"}`);
-    //{"email": "okami935@gmail.com", "password": "fire5555"}
+
     let resultado : string | null = localStorage.getItem("usuariosGuardados");
     if(resultado !== null)
     {
       this.arrayUsers = JSON.parse(resultado);
-      console.log(resultado);
-      console.log(this.arrayUsers);
     }
   }
 
