@@ -11,30 +11,52 @@ export class AlertService {
   
   public sweetAlert(titulo: string, mensaje: string, icono: any)
   {
-    return Swal.fire({
-      heightAuto: false,
-      title: titulo,
-      text: mensaje,
-      icon: icono,
-    });
+    return Swal.fire(
+      {
+        heightAuto: false,
+        title: titulo,
+        text: mensaje,
+        icon: icono,
+      });
   }
 
-  public successToast(mensaje : string) : void
+  public successAlert(mensaje: string) : void
+  {
+    Swal.fire(
+      {
+        heightAuto: false,
+        icon: 'success',
+        title: mensaje,
+      });
+  }
+
+  public failureAlert(titulo: string, mensaje: string) : void
+  {
+    Swal.fire(
+      {
+        heightAuto: false,
+        icon: 'error',
+        title: mensaje,
+        text: mensaje,
+      });
+  }
+  
+  public successToast(mensaje: string) : void
   {
     Swal.fire(
       {
         icon: 'success',
         title: mensaje,
         toast: true,
-        position: 'bottom-right', //Esto va a ver como es más comodo en celular
-        timer: 3000,
-        timerProgressBar: true,
+        position: 'bottom',
+        timer: 2400,
+        timerProgressBar: false,
         showCloseButton: true,
-        showConfirmButton: false,
+        showConfirmButton: false
       });
   }
 
-  public infoToast(mensaje : string) : void
+  public infoToast(mensaje: string) : void
   {
     Swal.fire(
       {
@@ -49,22 +71,6 @@ export class AlertService {
       });
   }
 
-  public successAlert(mensaje : string) : void
-  {
-    Swal.fire(
-      {
-        icon: 'success',
-        title: mensaje,
-      });
-  }
-
-  public failureAlert(mensaje : string) : void
-  {
-    Swal.fire(
-      {
-        icon: 'error',
-        title: mensaje
-      });
-  }
+  
 
 }

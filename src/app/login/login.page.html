@@ -13,6 +13,7 @@
   
   <div style="display: flex; justify-content: center; align-items: center; height: 100%;">
   <div style="flex-direction: column;">
+
     <ion-label style="display: flex; align-items: center; justify-content: center;">
       <h1>Iniciar Sesion</h1>
     </ion-label>
@@ -29,6 +30,17 @@
     </ion-list>
 
     <ion-button color="tertiary" expand="block" (click)="this.iniciarSesion()">Ingresar</ion-button>
+
+    <div *ngIf="this.cargaFin == true; then mostrar else esperar"></div>
+
+    <ng-template #mostrar>
+      <ion-select label="Acceso rápido" fill="outline" (ionChange)="onQuickUser($event)">
+        <ion-select-option *ngFor="let item of arrayTestUsers" [value]="item">{{item.rol}}</ion-select-option>
+      </ion-select>
+    </ng-template>
+    <ng-template #esperar>
+      <ion-select label="Cargando" fill="outline"></ion-select>
+    </ng-template>
   </div>
   </div>  
 

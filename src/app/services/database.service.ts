@@ -9,8 +9,10 @@ export class DatabaseService {
 
   usuariosBD: Array<User> = [];
 
-  constructor(private firestore: AngularFirestore) 
-  { 
+  constructor(private firestore: AngularFirestore) { }
+
+  cargarUsuarios()
+  {
     console.log("Utilizo servicio Database");
     this.getCollectionObservable("users").subscribe((next : any) => 
     {
@@ -18,7 +20,7 @@ export class DatabaseService {
       this.usuariosBD = [];
       
       result.forEach((obj : any) => {
-        this.usuariosBD.push(new User(obj.id, obj.email, obj.password, obj.name));
+        this.usuariosBD.push(new User(obj.id, obj.email, obj.password, obj.name, obj.rol));
       });
     });
     console.log("Finalizo inicializacion");
@@ -43,26 +45,4 @@ export class DatabaseService {
   {
     return this.firestore.firestore.collection(coleccion).get();
   }
-
-  /*
-  validarDatoGuardado(id : string, coleccion : string)
-  {
-    const col = this.firestore.firestore.collection(coleccion);
-    console.log(id);
-    let retorno = col.get().then((next : any) =>
-    {
-      let result : Array<any> = next;
-      let exito : boolean = false;
-      result.forEach(obj =>
-      {
-        if(id == obj.id)
-        {
-          exito = true;
-        }
-      });
-      return exito;
-    });
-    return retorno;
-  }
-  */
 }

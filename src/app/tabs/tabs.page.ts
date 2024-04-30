@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { AuthService } from '../services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tabs',
@@ -7,6 +9,14 @@ import { Component } from '@angular/core';
 })
 export class TabsPage {
 
-  constructor() {}
+  constructor(private auth: AuthService, private router: Router) {}
 
+  cerrarSesion()
+  {
+    this.auth.logOut().then(next => {
+      console.log("Usuario logeado? " + this.auth.logueado);
+      this.router.navigateByUrl('/login');
+    }
+    )
+  }
 }
