@@ -15,13 +15,9 @@ export class User {
         this.rol = rol;
     }
 
-    initialize()
+    static initialize() : User
     {
-        this.id = '';
-        this.mail = '';
-        this.password = '';
-        this.userName = '';
-        this.userName = '';
+        return new User('','','','','');
     }
 
     //Para las aplicaciones del parcial, los usuarios no tienen nombre de usuario, solo rol.

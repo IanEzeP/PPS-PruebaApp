@@ -15,22 +15,22 @@
   <div style="flex-direction: column;">
 
     <ion-label style="display: flex; align-items: center; justify-content: center;">
-      <h1>Iniciar Sesion</h1>
+      <h1>Iniciar Sesión</h1>
     </ion-label>
+    <form class="needs-validation" [formGroup]="formLog">
+      <ion-list [inset]="true" >
+        <ion-item>
+          <ion-input label="Email" type="email" labelPlacement="floating" formControlName="email"></ion-input>
+        </ion-item>
+        
+        <ion-item>
+          <ion-input label="Password" type="password" labelPlacement="floating" formControlName="password"></ion-input>
+        </ion-item>
+      </ion-list>
+
+      <ion-button color="tertiary" expand="block" (click)="this.iniciarSesion()">Ingresar</ion-button>
+    </form>
     
-    <ion-list [inset]="true" >
-      <ion-item>
-        <ion-input label="Email" type="email" labelPlacement="floating" [(ngModel)]="this.mail" minlength="6" maxlength="40"></ion-input>
-      </ion-item>
-      
-      <ion-item>
-        <ion-input label="Password" type="password" labelPlacement="floating" 
-        [(ngModel)]="this.pass" minlength="6" maxlength="18"></ion-input>
-      </ion-item>
-    </ion-list>
-
-    <ion-button color="tertiary" expand="block" (click)="this.iniciarSesion()">Ingresar</ion-button>
-
     <div *ngIf="this.cargaFin == true; then mostrar else esperar"></div>
 
     <ng-template #mostrar>

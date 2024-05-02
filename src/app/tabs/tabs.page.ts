@@ -14,7 +14,6 @@ export class TabsPage {
   cerrarSesion()
   {
     this.auth.logOut().then(next => {
-      console.log("Usuario logeado? " + this.auth.logueado);
       this.router.navigateByUrl('/login');
     }
     )
